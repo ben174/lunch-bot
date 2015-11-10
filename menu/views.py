@@ -1,42 +1,30 @@
 import datetime
-import logging
-from django.http import HttpResponse
-from django.shortcuts import render
-from util.menu_parser import parse_menu_text
-from menu.models import Menu, MenuItem
+from django.shortcuts import render, get_object_or_404
+from util.menu_parser import parse_menu_text, menu_entry_to_db
+from menu.models import Menu
 
 
 def home(request):
     return parse(request)
 
+
 def parse(request):
     if request.method == 'POST':
         menu_text = request.POST.get('menu-text', None)
-        menus = parse_menu_text(menu_text)
+        entries = parse_menu_text(menu_text)
+        menus = []
+        for entry in entries:
+            menu = menu_entry_to_db(entry)
+            if menu not in menus:
+                menus.append(menu)
         return menu_list(request, menus)
     return render(request, 'parse.html', {})
 
 
 def email(request):
     today = datetime.date.today()
-    if not Menu.objects.filter(date=today).exists():
-        message = "No menu exists for today."
-        logging.warning(message)
-        return HttpResponse(message)
-    try:
-        lunch_menu = Menu.objects.get(date=today, menu_type='L')
-    except Menu.DoesNotExist:
-        message = "Lunch menu does not exist for today."
-        logging.warning(message)
-        return HttpResponse(message)
-    dinner_menu = None
-    try:
-        dinner_menu = Menu.objects.get(date=today, menu_type='D')
-    except Menu.DoesNotExist:
-        message = "Dinner menu does not exist for today."
-        logging.warning(message)
-
-    return render(request, 'menu_email.html', { 'date': today, 'lunch_menu': lunch_menu, 'dinner_menu': dinner_menu })
+    menu = get_object_or_404(Menu, date=today)
+    return render(request, 'menu_email.html', { 'date': today, 'menu': menu })
 
 
 def menu_list(request, menus):

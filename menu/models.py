@@ -12,33 +12,50 @@ class MenuItem(models.Model):
         return self.name
 
 
-class Menu(models.Model):
+class Meal(models.Model):
     LUNCH = 'L'
     DINNER = 'D'
     MENU_TYPE_CHOICES = (
         (LUNCH, 'Lunch'),
         (DINNER, 'Dinner'),
     )
-    menu_type = models.CharField(max_length=1, choices=MENU_TYPE_CHOICES)
-    date = models.DateField()
+    meal_type = models.CharField(max_length=1, choices=MENU_TYPE_CHOICES)
     items = models.ManyToManyField(MenuItem)
     vendor = models.CharField(max_length=50, null=True, blank=True)
-    notified = models.BooleanField(default=False)
 
     @property
     def friendly_type(self):
-        if self.menu_type == 'L':
+        if self.meal_type == 'L':
             return 'Lunch'
-        elif self.menu_type == 'D':
+        elif self.meal_type == 'D':
             return 'Dinner'
         return None
 
-    class Meta:
-        unique_together = ("menu_type", "date")
-
     def __str__(self):
-        return '{} ({}) - {}'.format(
-            str(self.date),
-            'Lunch' if self.menu_type == 'L' else 'Dinner',
+        return '{} - {}'.format(
+            self.friendly_type,
             self.vendor
         )
+
+
+class Menu(models.Model):
+    date = models.DateField()
+    notified = models.BooleanField(default=False)
+    lunch = models.OneToOneField(Meal, related_name='lunch', null=True, blank=True)
+    dinner = models.OneToOneField(Meal, related_name='dinner', null=True, blank=True)
+
+    def __str__(self):
+        leg = 'No meals'
+
+        if self.lunch and self.dinner:
+            leg = 'Lunch and Dinner'
+        elif self.lunch:
+            leg = 'Lunch only'
+        elif self.dinner:
+            leg = 'Dinner only'
+        return '{} - {} (Notified: {})'.format(
+            self.date,
+            leg,
+            str(self.notified),
+        )
+

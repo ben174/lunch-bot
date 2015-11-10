@@ -2,9 +2,9 @@
 <html lang="en">
 <body>
 <h1>Menu for {{ date|date:"F j, Y" }}</h1>
-{% include 'menu_email_block.html' with menu=lunch_menu %}
-{% if dinner_menu %}
-    {% include 'menu_email_block.html' with menu=dinner_menu %}
+{% include 'meal_block.html' with meal=menu.lunch %}
+{% if menu.dinner %}
+    {% include 'meal_block.html' with meal=menu.dinner %}
 {% endif %}
 <i>This email was sent out by lunch-bot. If I am broken or otherwise misbehave, please notify my owner - Ben Friedland (<a href="mailto:u624@intrafile.com">u624@intrafile.com</a>).
 If you can improve me, please feel free to contribute: <a href="http://stash.shape/projects/TOOL/repos/lunch-bot/browse">http://stash.shape/projects/TOOL/repos/lunch-bot/browse</a>.</i>

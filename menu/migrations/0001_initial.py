@@ -11,13 +11,21 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='Meal',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('meal_type', models.CharField(max_length=1, choices=[(b'L', b'Lunch'), (b'D', b'Dinner')])),
+                ('vendor', models.CharField(max_length=50, null=True, blank=True)),
+            ],
+        ),
+        migrations.CreateModel(
             name='Menu',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('menu_type', models.CharField(max_length=1, choices=[(b'L', b'Lunch'), (b'D', b'Dinner')])),
                 ('date', models.DateField()),
-                ('vendor', models.CharField(max_length=50, null=True, blank=True)),
                 ('notified', models.BooleanField(default=False)),
+                ('dinner', models.OneToOneField(related_name='dinner', null=True, blank=True, to='menu.Meal')),
+                ('lunch', models.OneToOneField(related_name='lunch', null=True, blank=True, to='menu.Meal')),
             ],
         ),
         migrations.CreateModel(
@@ -28,12 +36,8 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.AddField(
-            model_name='menu',
+            model_name='meal',
             name='items',
             field=models.ManyToManyField(to='menu.MenuItem'),
-        ),
-        migrations.AlterUniqueTogether(
-            name='menu',
-            unique_together=set([('menu_type', 'date')]),
         ),
     ]

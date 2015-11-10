@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
     {% for menu in menus %}
-        <h3>{{ menu.friendly_type }} menu for {{ menu.date }}</h3>
-        {% include 'menu_email_block.html' %}
+        <h3>{{ menu.date }}</h3>
+        {% include 'meal_block.html' with meal=menu.lunch %}
+        {{  menu.dinner }}
+        {% if menu.dinner %}
+            {% include 'meal_block.html' with meal=menu.dinner %}
+        {% endif %}
     {% endfor %}
 {% endblock %}
