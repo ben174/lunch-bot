@@ -1,0 +1,7 @@
+<h2>{% if menu.menu_type == 'L' %}Lunch{% elif menu.menu_type == 'D' %}Dinner{% endif %}</h2>
+<h3>{{ menu.vendor }}</h3>
+<ul>
+    {% for item in menu.items.all %}
+        <li>{{ item.name }}</li>
+    {% endfor %}
+</ul>
