@@ -74,14 +74,11 @@ WSGI_APPLICATION = 'lunchbot.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'lunchbot',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -107,3 +104,11 @@ EMAIL_HOST = '10.5.5.66'
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# load custom settings if they exist. this looks anywhere in the path
+try:
+    from custom_settings import *
+    from local_settings import *
+    print "Using custom_settings file."
+except ImportError:
+    pass
