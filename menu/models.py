@@ -25,6 +25,14 @@ class Menu(models.Model):
     vendor = models.CharField(max_length=50, null=True, blank=True)
     notified = models.BooleanField(default=False)
 
+    @property
+    def friendly_type(self):
+        if self.menu_type == 'L':
+            return 'Lunch'
+        elif self.menu_type == 'D':
+            return 'Dinner'
+        return None
+
     class Meta:
         unique_together = ("menu_type", "date")
 

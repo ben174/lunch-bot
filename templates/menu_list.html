@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for menu in menus %}
+        <h3>{{ menu.friendly_type }} menu for {{ menu.date }}</h3>
+        {% include 'menu_email_block.html' %}
+    {% endfor %}
+{% endblock %}

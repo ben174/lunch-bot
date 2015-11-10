@@ -6,12 +6,14 @@ from util.menu_parser import parse_menu_text
 from menu.models import Menu, MenuItem
 
 
+def home(request):
+    return parse(request)
+
 def parse(request):
     if request.method == 'POST':
         menu_text = request.POST.get('menu-text', None)
         menus = parse_menu_text(menu_text)
-        print menus
-
+        return menu_list(request, menus)
     return render(request, 'parse.html', {})
 
 
@@ -35,4 +37,8 @@ def email(request):
         logging.warning(message)
 
     return render(request, 'menu_email.html', { 'date': today, 'lunch_menu': lunch_menu, 'dinner_menu': dinner_menu })
+
+
+def menu_list(request, menus):
+    return render(request, 'menu_list.html', { 'menus': menus })
 

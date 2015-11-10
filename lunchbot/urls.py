@@ -5,5 +5,6 @@ import menu.views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^parse/$', menu.views.parse, name='parse'),
+    url(r'^$', menu.views.home, name='home'),
     url(r'^email/$', menu.views.email, name='email'),
 ]

@@ -1,6 +1,12 @@
-
-<form method="post">
-  {% csrf_token %}
-  <textarea id="menu-text" name="menu-text"></textarea>
-  <input type="submit">
-</form>
+{% extends 'base.html' %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <h3>Please enter menu text here:</h3>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Menu Text</label>
+            <textarea class="form-control" id="menu-text" name="menu-text" placeholder="Enter Menu Text"></textarea>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+{% endblock %}
