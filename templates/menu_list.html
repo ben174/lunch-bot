@@ -1,11 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
+    <h1>Menus for the week of {{ start_date|date:"m/d" }} - {{ end_date|date:"m/d" }}</h1>
     {% for menu in menus %}
-        <h3>{{ menu.date }}</h3>
-        {% include 'meal_block.html' with meal=menu.lunch %}
-        {{  menu.dinner }}
-        {% if menu.dinner %}
-            {% include 'meal_block.html' with meal=menu.dinner %}
-        {% endif %}
+        <div class="row">
+            <div class="col-lg-12 date-bar">
+                <h2>{{ menu.date|date:"F j, Y" }}</h2>
+            </div>
+            <div class="col-md-6">
+            {% include 'meal_block.html' with meal=menu.lunch %}
+            </div>
+            <div class="col-md-6">
+            {% if menu.dinner %}
+                {% include 'meal_block.html' with meal=menu.dinner %}
+            {% endif %}
+            </div>
+        </div>
     {% endfor %}
 {% endblock %}

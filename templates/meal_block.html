@@ -1,5 +1,5 @@
-<h2>{% if meal.meal_type == 'L' %}Lunch{% elif meal.meal_type == 'D' %}Dinner{% endif %}</h2>
-<h3>{{ meal.vendor }}</h3>
+<h3>{% if meal.meal_type == 'L' %}Lunch{% elif meal.meal_type == 'D' %}Dinner{% endif %}</h3>
+<h4>{{ meal.vendor }}</h4>
 <ul>
     {% for item in meal.items.all %}
         <li>{{ item.name }}</li>

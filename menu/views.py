@@ -30,3 +30,14 @@ def email(request):
 def menu_list(request, menus):
     return render(request, 'menu_list.html', { 'menus': menus })
 
+
+def week(request, week_num=None):
+    today = datetime.date.today()
+    start_date = today - datetime.timedelta(days=today.weekday())
+    end_date = start_date + datetime.timedelta(days=5)
+    menus = Menu.objects.filter(date__gte=start_date, date__lte=end_date)
+    return render(request, 'menu_list.html', {
+        'menus': menus,
+        'start_date': start_date,
+        'end_date': end_date,
+    })
