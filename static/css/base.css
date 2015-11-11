@@ -10,26 +10,42 @@ textarea {min-height: 600px;}
 
 .date-bar h2 {
     margin-top: 10px;
+    float: left;
 }
 
 .active-date {
     background-color: #674C84;
 }
+.past-date {
+    background-color: #AAA;
+}
 
 .vegetarian:after {
-    content: "Veg";
+    content: "V";
     border: solid 1px #666;
     text-transform: uppercase;
     font-size: 8px;
-    padding: 2px 6px;
+    padding: 2px 5px;
     border-radius: 9px;
     margin-left: 5px;
     background-color: #D9EFA6;
     font-weight: bold;
     position: absolute;
-
 }
 
 .navbar-inverse {
     background-image: linear-gradient(to bottom,#3c3c5c 0,#225 100%);
 }
+
+.datelinks {
+    color: #663;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding-left: 30px;
+    font-size: 12px;
+}
+
+a.showmenu {
+    color: #447;
+}
+
