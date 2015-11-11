@@ -1,4 +1,5 @@
 import datetime
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from util.menu_parser import parse_menu_text, menu_entry_to_db
 from menu.models import Menu
@@ -54,3 +55,10 @@ def week(request, week_num=None):
         'start_date': start_date,
         'end_date': end_date,
     })
+
+
+def text(request, meal='B'):
+    day=datetime.date.today()
+    return HttpResponse(Menu.objects.get(date=day).to_text(meal=meal), content_type="text/plain")
+
+

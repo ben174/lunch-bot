@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^parse/$', menu.views.parse, name='parse'),
     url(r'^$', menu.views.week, name='week'),
     url(r'^email/$', menu.views.email, name='email'),
+    url(r'^text/(?P<meal>[BLD])$', menu.views.text, name='text'),
 ]

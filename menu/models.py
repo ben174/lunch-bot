@@ -66,6 +66,28 @@ class Menu(models.Model):
     lunch = models.OneToOneField(Meal, related_name='lunch', null=True, blank=True)
     dinner = models.OneToOneField(Meal, related_name='dinner', null=True, blank=True)
 
+    def to_text(self, meal='B'):
+        ret = ""
+        if meal == 'B' or meal == 'L':
+            ret += "LUNCH - {}\n\n".format(self.lunch.vendor)
+            if not self.lunch:
+                if meal == 'L':
+                    return 'No lunch menu entered for {}. '.format(self.date)
+            else:
+                for item in self.lunch.items.all():
+                    ret += '  {}\n'.format(item.name)
+                ret += '\n\n'
+        if meal == 'B' or meal == 'D':
+            ret += "DINNER - {}\n\n".format(self.dinner.vendor)
+            if not self.dinner:
+                if meal == 'D':
+                    return 'No dinner menu entered for {}. '.format(self.date)
+            else:
+                for item in self.dinner.items.all():
+                    ret += '  {}\n'.format(item.name)
+                ret += '\n'
+        return ret
+
     def __str__(self):
         leg = 'No meals'
 

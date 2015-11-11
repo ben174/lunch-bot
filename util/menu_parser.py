@@ -43,7 +43,7 @@ def parse_menu_text(menu_text):
             curr_meal = MenuEntry(meal_type=current_meal_type)
             meals.append(curr_meal)
             matches = re.findall(r'.*, (.*) ([0-9]+).*: (.*)', line)[0]
-            month_name, day, vendor = matches
+            month_name, day, vendor = [m.strip() for m in matches]
             day = int(day)
             month = months.index(month_name)
             #TODO: Determine year somehow
