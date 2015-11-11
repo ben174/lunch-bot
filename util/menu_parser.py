@@ -5,10 +5,14 @@ from menu.models import Menu, MenuItem, Meal
 
 days_of_week = ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday')
 months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July',
-        'August', 'September', 'October', 'November', 'December']
+          'August', 'September', 'October', 'November', 'December']
 
 
 class MenuEntry:
+    """
+    A class to hold a given date's meal. This class is then converted into its ORM counterpart.
+
+    """
     def __init__(self, meal_type=None):
         self.meal_type = meal_type
         self.items = []
@@ -17,6 +21,11 @@ class MenuEntry:
 
 
 def parse_menu_text(menu_text):
+    """
+    Parses plain text menu as found at https://sites.google.com/a/intrafile.com/intranet/home/lunch-menu
+    and turns it into a list of MenuEntry objects.
+
+    """
     meals = []
     curr_meal = None
 
@@ -51,6 +60,10 @@ def parse_menu_text(menu_text):
 
 
 def menu_entry_to_db(entry):
+    """
+    Converts a MenuEntry into Meal, Menu, and MenuItem objects which are stored in the database.
+
+    """
     menu, _ = Menu.objects.get_or_create(date=entry.date)
     meal = Meal.objects.create(meal_type=entry.meal_type, vendor=entry.vendor)
     for item_name in entry.items:
@@ -66,8 +79,3 @@ def menu_entry_to_db(entry):
         menu.dinner = meal
     menu.save()
     return menu
-
-
-
-
-

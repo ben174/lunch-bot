@@ -2,6 +2,14 @@ from django.db import models
 
 
 class MenuItem(models.Model):
+    """
+    An item on the menu.
+
+    This is a many-to-many with meals, so multiple meals might have the same
+    menu item. This would come in handy if we ever wanted to query for other days containing the same
+    menu items.
+
+    """
     name = models.CharField(max_length=200)
 
     @property
@@ -17,6 +25,10 @@ class MenuItem(models.Model):
 
 
 class Meal(models.Model):
+    """
+    A meal, provided by a vendor, containing items (MenuItem).
+
+    """
     LUNCH = 'L'
     DINNER = 'D'
     MENU_TYPE_CHOICES = (
@@ -43,6 +55,12 @@ class Meal(models.Model):
 
 
 class Menu(models.Model):
+    """
+    The menu for a specific date. Has a one-to-one to Meal for both lunch and dinner.
+
+    A notified flag indicates whether this date's menu has been mailed out.
+
+    """
     date = models.DateField()
     notified = models.BooleanField(default=False)
     lunch = models.OneToOneField(Meal, related_name='lunch', null=True, blank=True)
