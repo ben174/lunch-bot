@@ -1,0 +1,35 @@
+#content {margin-top: 50px;}
+
+textarea {min-height: 600px;}
+
+.date-bar {
+    background-color: #666;
+    margin-top: 20px;
+    color: #CCC;
+}
+
+.date-bar h2 {
+    margin-top: 10px;
+}
+
+.active-date {
+    background-color: #674C84;
+}
+
+.vegetarian:after {
+    content: "Veg";
+    border: solid 1px #666;
+    text-transform: uppercase;
+    font-size: 8px;
+    padding: 2px 6px;
+    border-radius: 9px;
+    margin-left: 5px;
+    background-color: #D9EFA6;
+    font-weight: bold;
+    position: absolute;
+
+}
+
+.navbar-inverse {
+    background-image: linear-gradient(to bottom,#3c3c5c 0,#225 100%);
+}

@@ -3,7 +3,7 @@
     <h1>Menus for the week of {{ start_date|date:"m/d" }} - {{ end_date|date:"m/d" }}</h1>
     {% for menu in menus %}
         <div class="row">
-            <div class="col-lg-12 date-bar">
+            <div class="col-lg-12 date-bar{% if menu.date == today %} active-date{% endif %}">
                 <h2>{{ menu.date|date:"l - F j, Y" }}</h2>
             </div>
             <div class="col-md-6">

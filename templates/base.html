@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,19 +19,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
             integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
             crossorigin="anonymous"></script>
-    <style>
 
-        #content {margin-top: 50px;}
-        textarea {min-height: 600px;}
-        .date-bar {
-            background-color: #666;
-            margin-top: 20px;
-            color: #CCC;
-        }
-        .date-bar h2 {
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="{%  static 'css/base.css' %}">
+
 
 </head>
 

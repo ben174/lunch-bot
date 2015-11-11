@@ -38,6 +38,7 @@ def week(request, week_num=None):
     menus = Menu.objects.filter(date__gte=start_date, date__lte=end_date).order_by('date')
     return render(request, 'menu_list.html', {
         'menus': menus,
+        'today': today,
         'start_date': start_date,
         'end_date': end_date,
     })

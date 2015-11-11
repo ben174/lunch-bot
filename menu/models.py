@@ -5,8 +5,12 @@ class MenuItem(models.Model):
     name = models.CharField(max_length=200)
 
     @property
-    def is_vegan(self):
-        return 'vegan' in self.name.lower()
+    def vegetarian(self):
+        return (
+            'vegan' in self.name.lower() or
+            'vegetarian' in self.name.lower() or
+            '(veg)' in self.name.lower()
+        )
 
     def __str__(self):
         return self.name
