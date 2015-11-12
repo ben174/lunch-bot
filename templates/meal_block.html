@@ -2,6 +2,6 @@
 <h4>{{ meal.vendor }}</h4>
 <ul>
     {% for item in meal.items.all %}
-        <li class="{% if item.vegetarian %}vegetarian{% endif %}">{{ item.name }}</li>
+        <li class="{% if item.vegetarian %}vegetarian{% endif %}">{{ item.name }}{% if item.allergens.all %} ({% endif %}{% for allergen in item.allergens.all %}{{ allergen.name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% if item.allergens.all %}){% endif %}</li>
     {% endfor %}
 </ul>

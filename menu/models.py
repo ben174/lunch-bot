@@ -1,6 +1,19 @@
 from django.db import models
 
 
+class Allergen(models.Model):
+    """
+    A food alleren. MenuItems may contain zero or more of these
+
+    Alcohol (A), Bell Pepper (BP), Cilantro (Cil), Coriander (Cor), Dairy (D), Egg (E), Gluten (G),
+    Garlic (Gar), Mango (Mg), Nut (N), Olives (O), Pork (P), Shellfish (Sh), Soy (Soy), Spicy (Sp),
+    Vegan (Vegan), Vegetarian (Veget), Wheat (W)
+
+    """
+    code = models.CharField(max_length=10)
+    name = models.CharField(max_length=30)
+
+
 class MenuItem(models.Model):
     """
     An item on the menu.
@@ -11,6 +24,7 @@ class MenuItem(models.Model):
 
     """
     name = models.CharField(max_length=200)
+    allergens = models.ManyToManyField(Allergen)
 
     @property
     def vegetarian(self):
@@ -36,6 +50,7 @@ class Meal(models.Model):
         (DINNER, 'Dinner'),
     )
     meal_type = models.CharField(max_length=1, choices=MENU_TYPE_CHOICES)
+    cuisine = models.CharField(max_length=50, null=True, blank=True)
     items = models.ManyToManyField(MenuItem)
     vendor = models.CharField(max_length=50, null=True, blank=True)
 
