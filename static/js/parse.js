@@ -50,8 +50,10 @@ function parseMealMenu() {
     }
     if (menu.date==null || menu.cuisine == "" || menu.items.length == 0 || menu.vendor == "" || menu.mealType == "") {
         clearParsedMenu();
+        $("#save-button").prop('disabled', true);
         return;
     }
+    $("#save-button").prop('disabled', false);
     menus.push(menu);
     drawMenu();
 }
@@ -92,7 +94,10 @@ function parseAndrosMenu() {
         }
     }
     if(menu!=null) {
+        $("#save-button").prop('disabled', false);
         drawMenu();
+    } else {
+        $("#save-button").prop('disabled', true);
     }
 }
 
@@ -123,12 +128,12 @@ function dateToString(date) {
     return monthNames[monthIndex] + ' ' + day + ', ' + year;
 }
 
-
 function submitMenu() {
     var payload = JSON.stringify(menus);
     var url = '/submit/';
     jQuery.post(url, payload, function(result) {
-        $("#content").html(result);
+        var html = result + '<a href="/parse" class="btn btn-primary">Enter Another</a>';
+        $("#content").html(html);
     });
     return false;
 };
