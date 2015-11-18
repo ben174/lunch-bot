@@ -1,7 +1,7 @@
 from fabric.api import run, env
 from fabric.context_managers import cd
 
-env.hosts = ['sift.shape']
+env.hosts = ['lunch.shape']
 env.user = 'root'
 
 def host_type():
