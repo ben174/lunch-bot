@@ -37,6 +37,13 @@ textarea {min-height: 600px;}
     background-image: linear-gradient(to bottom,#3c3c5c 0,#225 100%);
 }
 
+.navbar-brand img {
+    float: left;
+    position: relative;
+    top: -10px;
+    left: -30px;
+}
+
 .datelinks {
     color: #663;
     margin-top: 20px;
@@ -49,3 +56,14 @@ a.showmenu {
     color: #447;
 }
 
+.allergens {
+    font-size: 9px;
+    color: #999;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+.allergen {
+    border-radius: 3px;
+    border: solid 1px #CCC;
+    padding: 2px 4px;
+}

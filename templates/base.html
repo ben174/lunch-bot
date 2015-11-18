@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"
           integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{%  static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 
 <body>
@@ -32,7 +32,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Lunch Bot</a>
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'img/sandwich.png' %}" width="100" />
+                Lunch Bot
+            </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
         </div>

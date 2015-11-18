@@ -2,10 +2,33 @@
 <html lang="en">
 <body>
 <h1>Menu for {{ date|date:"F j, Y" }}</h1>
-{% include 'meal_block.html' with meal=menu.lunch %}
-{% if menu.dinner %}
-    {% include 'meal_block.html' with meal=menu.dinner %}
+
+<h3>Lunch</h3>
+{% if menu.lunch.cuisine %}
+<h4><b>{{ menu.lunch.cuisine }}</b> ({{ menu.lunch.vendor }})</h4>
+{% else %}
+<h4>{{ menu.lunch.vendor }}</h4>
 {% endif %}
+<ul>
+    {% for item in menu.lunch.items.all %}
+        <li>{{ item.name }}</li>
+    {% endfor %}
+</ul>
+
+{% if menu.dinner %}
+    <h3>Dinner</h3>
+    {% if menu.dinner.cuisine %}
+        <h4><b>{{ menu.dinner.cuisine }}</b> ({{ menu.dinner.vendor }})</h4>
+    {% else %}
+        <h4>{{ menu.dinner.vendor }}</h4>
+    {% endif %}
+    <ul>
+        {% for item in menu.dinner.items.all %}
+            <li>{{ item.name }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
 <i>This email was sent out by lunch-bot. If I am broken or otherwise misbehave, please notify my owner - Ben Friedland (<a href="mailto:u624@intrafile.com">u624@intrafile.com</a>).
 If you can improve me, please feel free to contribute: <a href="http://stash.shape/projects/TOOL/repos/lunch-bot/browse">http://stash.shape/projects/TOOL/repos/lunch-bot/browse</a>.</i>
 </body>

@@ -1,7 +1,18 @@
 <h3>{% if meal.meal_type == 'L' %}Lunch{% elif meal.meal_type == 'D' %}Dinner{% endif %}</h3>
+{% if meal.cuisine %}
+<h4><b>{{ meal.cuisine }}</b> ({{ meal.vendor }})</h4>
+{% else %}
 <h4>{{ meal.vendor }}</h4>
+{% endif %}
 <ul>
     {% for item in meal.items.all %}
-        <li class="{% if item.vegetarian %}vegetarian{% endif %}">{{ item.name }}{% if item.allergens.all %} ({% endif %}{% for allergen in item.allergens.all %}{{ allergen.name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% if item.allergens.all %}){% endif %}</li>
+        <li>
+            {{ item.name }}
+            <span class="allergens">
+                {% for allergen in item.allergens.all %}
+                    <span class="allergen">{{ allergen.name }}</span>
+                {% endfor %}
+            </span>
+        </li>
     {% endfor %}
 </ul>
