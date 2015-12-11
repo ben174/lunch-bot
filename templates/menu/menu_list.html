@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>All Menus</h1>
+    {% for menu in object_list %}
+        {% include 'menu_block.html' %}
+    {% endfor %}
+{% endblock %}

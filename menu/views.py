@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 import unicodedata
+from django.views.generic import TodayArchiveView, DateDetailView, DayArchiveView, ListView, WeekArchiveView
 from util.menu_parser import parse_menu_text, menu_entry_to_db
 from menu.models import Menu, MenuItem, Meal, Allergen
 
@@ -50,6 +51,7 @@ def week(request, year=None, month=None, day=None):
 
     """
     today = datetime.date.today()
+
     if year and month and day:
         year, month, day = int(year), int(month), int(day)
         today = datetime.date(year, month, day)
@@ -123,3 +125,24 @@ def provision_allergens(request):
         allergen, created = Allergen.objects.get_or_create(name=name, code=code)
         ret += '{} ({}) - Created: {}\n'.format(name, code, str(created))
     return HttpResponse(ret, content_type="text/plain")
+
+
+class MenuDayArchiveView(DayArchiveView):
+    queryset = Menu.objects.all()
+    date_field = "date"
+    allow_future = True
+    allow_empty = True
+
+
+
+class MenuList(ListView):
+    model = Menu
+
+
+class MenuWeekArchiveView(WeekArchiveView):
+    queryset = Menu.objects.all()
+    date_field = "date"
+    allow_future = True
+    allow_empty = True
+    ordering = 'date'
+

@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-lg-12 date-bar{% if menu.date == today %} active-date{% elif menu.date < today %} past-date{% endif %}">
+        <h2>{{ menu.date|date:"l - F j, Y" }}</h2>
+        {% if menu.date < today and do_collapse %}
+        <div class="datelinks pull-right">[ <a href="#" class="showmenu">show</a> ]</div>
+        {% endif %}
+    </div>
+    <div class="{% if menu.date < today and do_collapse %}collapse{% endif %}">
+        <div class="col-md-6">
+        {% include 'meal_block.html' with meal=menu.lunch %}
+        </div>
+        <div class="col-md-6">
+        {% if menu.dinner %}
+            {% include 'meal_block.html' with meal=menu.dinner %}
+        {% endif %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Menus for week of {{ week|date }}</h1>
+    {% if previous_week %}
+        <a href="{% url 'menu_week' previous_week|date:"Y" previous_week|date:"W"  %}">Previous {{ previous_week }}</a>
+    {% endif %}
+    {% if next_week %}
+        <a href="{% url 'menu_week' next_week|date:"Y" next_week|date:"W"  %}">Next {{ next_week }}</a>
+    {% endif %}
+    {% for menu in object_list %}
+        {% include 'menu_block.html' with do_collapse=True %}
+    {% endfor %}
+{% endblock %}

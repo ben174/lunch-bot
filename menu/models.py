@@ -81,6 +81,10 @@ class Menu(models.Model):
     lunch = models.OneToOneField(Meal, related_name='lunch', null=True, blank=True)
     dinner = models.OneToOneField(Meal, related_name='dinner', null=True, blank=True)
 
+
+    class Meta:
+        ordering = ['date']
+
     def to_text(self, meal='B'):
         ret = ""
         if meal == 'B' or meal == 'L':
