@@ -32,12 +32,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/">
                 <img src="{% static 'img/sandwich.png' %}" width="100" />
                 Lunch Bot
             </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="subscribe-button"><a href="{% url 'subscribe' %}">Subscribe to Daily Email</a></li>
+            </ul>
+
         </div>
         <!--/.nav-collapse -->
     </div>

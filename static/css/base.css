@@ -6,11 +6,11 @@ textarea {min-height: 600px;}
     background-color: #666;
     margin-top: 20px;
     color: #CCC;
+    padding: 1px 13px;
 }
 
 .date-bar h2 {
     margin-top: 10px;
-    float: left;
 }
 
 .active-date {
@@ -66,4 +66,26 @@ a.showmenu {
     border-radius: 3px;
     border: solid 1px #CCC;
     padding: 2px 4px;
+}
+
+.page-button {
+    margin-top: 23px;
+}
+
+li.subscribe-button {
+    background-color: #925D5D;
+    font-size: 18px;
+    font-weight: bold;
+}
+li.subscribe-button a {
+    color: #FFF!important;
+}
+
+.subscribe-link {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.subscribe-block {
+    margin-top: 40px;
 }

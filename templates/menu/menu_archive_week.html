@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Menus for week of {{ week|date }}</h1>
-    {% if previous_week %}
-        <a href="{% url 'menu_week' previous_week|date:"Y" previous_week|date:"W"  %}">Previous {{ previous_week }}</a>
-    {% endif %}
-    {% if next_week %}
-        <a href="{% url 'menu_week' next_week|date:"Y" next_week|date:"W"  %}">Next {{ next_week }}</a>
-    {% endif %}
+    <div class="row">
+        <div class="col-md-3">
+            <a class="btn pull-right btn-default page-button" href="{% url 'menu_week' previous_week|date:"Y" previous_week|date:"W"  %}">
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <h1>Menus for week of {{ week|date }}</h1>
+        </div>
+        <div class="col-md-3">
+            <a class="btn btn-default page-button" href="{% url 'menu_week' next_week|date:"Y" next_week|date:"W"  %}">
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
     {% for menu in object_list %}
         {% include 'menu_block.html' with do_collapse=True %}
+        glyphicon glyphicon-arrow-left
     {% endfor %}
 {% endblock %}

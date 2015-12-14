@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^week/$', menu.views.week, name='week'),
 
     url(r'^menus/$', menu.views.MenuList.as_view()),
+    url(r'^subscribe/$', menu.views.subscribe, name='subscribe'),
     url(r'^(?P<year>[0-9]{4})/week/(?P<week>[0-9]+)/$', menu.views.MenuWeekArchiveView.as_view(), name="menu_week"),
     url(r'^(?P<year>[0-9]{4})/(?P<month>[-\w]+)/(?P<day>[0-9]+)/$', menu.views.MenuDayArchiveView.as_view(), name="menu_day"),
 

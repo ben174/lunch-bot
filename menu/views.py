@@ -51,24 +51,18 @@ def week(request, year=None, month=None, day=None):
 
     """
     today = datetime.date.today()
+    current_week_number = str(today.isocalendar()[1])
+    current_year = str(today.year)
+    return MenuWeekArchiveView.as_view()(request, year=current_year, week=current_week_number)
 
-    if year and month and day:
-        year, month, day = int(year), int(month), int(day)
-        today = datetime.date(year, month, day)
-    start_date = today - datetime.timedelta(days=today.weekday())
-    end_date = start_date + datetime.timedelta(days=5)
-    menus = Menu.objects.filter(date__gte=start_date, date__lte=end_date).order_by('date')
-    return render(request, 'menu_list.html', {
-        'menus': menus,
-        'today': today,
-        'start_date': start_date,
-        'end_date': end_date,
-    })
 
 
 def text(request, meal='B'):
     day=datetime.date.today()
     return HttpResponse(Menu.objects.get(date=day).to_text(meal=meal), content_type="text/plain")
+
+def subscribe(request):
+    return render(request, 'subscribe.html')
 
 
 @csrf_exempt
@@ -132,7 +126,6 @@ class MenuDayArchiveView(DayArchiveView):
     date_field = "date"
     allow_future = True
     allow_empty = True
-
 
 
 class MenuList(ListView):

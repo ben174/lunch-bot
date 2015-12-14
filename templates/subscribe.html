@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+    <h1>Lunch Bot Daily Emails</h1>
+
+    <div class="subscribe-block">
+        <h3>To get daily menu emails, please navigate to:</h3>
+        <div class="subscribe-link">
+            <a href="https://groups.google.com/a/intrafile.com/forum/#!forum/lunch-bot" target="_blank">https://groups.google.com/a/intrafile.com/forum/#!forum/lunch-bot</a>
+        </div>
+        <h3>And click the 'Join Group' link:</h3>
+        <img src="{% static 'img/subscribe.png' %}" class="img-responsive img-thumbnail">
+    </div>
+{% endblock %}
