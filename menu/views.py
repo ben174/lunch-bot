@@ -139,3 +139,9 @@ class MenuWeekArchiveView(WeekArchiveView):
     allow_empty = True
     ordering = 'date'
 
+    def get_context_data(self, **kwargs):
+        context = super(MenuWeekArchiveView, self).get_context_data(**kwargs)
+        context['today'] = datetime.date.today()
+        return context
+
+

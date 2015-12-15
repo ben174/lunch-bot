@@ -7,6 +7,7 @@ textarea {min-height: 600px;}
     margin-top: 20px;
     color: #CCC;
     padding: 1px 13px;
+    font-size: 30px;
 }
 
 .date-bar h2 {
@@ -46,10 +47,8 @@ textarea {min-height: 600px;}
 
 .datelinks {
     color: #663;
-    margin-top: 20px;
-    margin-left: 20px;
-    padding-left: 30px;
     font-size: 12px;
+    margin-top: 12px;
 }
 
 a.showmenu {
@@ -82,10 +81,24 @@ li.subscribe-button a {
 }
 
 .subscribe-link {
-    font-size: 18px;
+    font-size: 24px;
     margin-bottom: 40px;
 }
 
 .subscribe-block {
     margin-top: 40px;
+}
+
+.step {
+    float: left;
+    font-size: 66px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    text-align: center;
+    background-color: #EEE;
+    font-weight: bold;
+    margin-right: 20px;
+    margin-bottom: 25px;
+    color: #999;
 }

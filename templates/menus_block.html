@@ -1,7 +1,7 @@
 {% for menu in menus %}
     <div class="row">
         <div class="col-lg-12 date-bar{% if menu.date == today %} active-date{% elif menu.date < today %} past-date{% endif %}">
-            <h2>{{ menu.date|date:"l - F j, Y" }}</h2>
+            {{ menu.date|date:"l - F j, Y" }}
             {% if menu.date < today  and do_collapse %}
             <div class="datelinks pull-right">[ <a href="#" class="showmenu">show</a> ]</div>
             {% endif %}
