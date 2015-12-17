@@ -26,6 +26,9 @@ def send_menu_email():
     htmly = render_to_string('menu_email.html', d)
 
     subject = 'Lunch Menu for {}'.format(today)
+    if menu.lunch.cuisine:
+        subject = 'Lunch ({}) - {}'.format(menu.lunch.cuisine, today)
+
     from_email = 'Lunch Bot'
     to = ['lunch-bot@intrafile.com']
     text_content = plaintext
