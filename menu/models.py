@@ -65,7 +65,7 @@ class Meal(models.Model):
     def __str__(self):
         return '{} - {}'.format(
             self.friendly_type,
-            self.vendor
+            self.cuisine if self.cuisine else self.vendor,
         )
 
 
@@ -88,7 +88,7 @@ class Menu(models.Model):
     def to_text(self, meal='B'):
         ret = ""
         if meal == 'B' or meal == 'L':
-            ret += "LUNCH - {}\n\n".format(self.lunch.vendor)
+            ret += "LUNCH - {}\n\n".format(self.lunch.cuisine)
             if not self.lunch:
                 if meal == 'L':
                     return 'No lunch menu entered for {}. '.format(self.date)
