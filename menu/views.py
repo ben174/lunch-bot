@@ -51,7 +51,7 @@ def week(request, year=None, month=None, day=None):
 
     """
     today = datetime.date.today()
-    current_week_number = str(today.isocalendar()[1]-1)
+    current_week_number = str(today.isocalendar()[1])
     current_year = str(today.year)
     return MenuWeekArchiveView.as_view()(request, year=current_year, week=current_week_number)
 

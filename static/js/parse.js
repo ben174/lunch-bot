@@ -77,7 +77,7 @@ function parseAndrosMenu() {
             var weekday = header[1];
             var month = monthNames.indexOf(header[2]);
             var day = header[3];
-            var date = new Date(2015, month, day, 12, 0, 0);
+            var date = new Date(2016, month, day, 12, 0, 0);
             var cuisine = header[4];
             var menu = {
                 date:date,
