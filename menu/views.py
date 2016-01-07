@@ -138,6 +138,7 @@ class MenuWeekArchiveView(WeekArchiveView):
     allow_future = True
     allow_empty = True
     ordering = 'date'
+    week_format = "%W"
 
     def get_context_data(self, **kwargs):
         context = super(MenuWeekArchiveView, self).get_context_data(**kwargs)
