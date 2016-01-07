@@ -10,7 +10,7 @@
             <h1>Menus for week of {{ week|date }}</h1>
         </div>
         <div class="col-md-3">
-            <a class="btn btn-default page-button" href="{% url 'menu_week' next_week|date:"Y" next_week|date:"W"  %}">
+            <a class="btn btn-default page-button" href="{% url 'menu_week' next_week|date:"Y" next_week|date:"W"|add:1  %}">
                 <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
             </a>
         </div>
