@@ -13,6 +13,9 @@ class Allergen(models.Model):
     code = models.CharField(max_length=10)
     name = models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.name + " (" + self.code + ")"
+
 
 class MenuItem(models.Model):
     """
