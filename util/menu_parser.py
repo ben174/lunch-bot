@@ -47,7 +47,7 @@ def parse_menu_text(menu_text):
             day = int(day)
             month = months.index(month_name)
             #TODO: Determine year somehow
-            meal_date = date(2015, month, day)
+            meal_date = date(2016, month, day)
             curr_meal.date = meal_date
             curr_meal.vendor = vendor
         # delicious menu item
